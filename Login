@@ -1,0 +1,57 @@
+from tkinter import*
+
+from PIL import ImageTk, Image
+root = Tk()
+#root.geometry("400x400")
+root.title("App GUI")
+
+imgTB=Image.open("thebeatles.jpg")
+imagenMusica=imgTB.resize((200,150))
+imag=ImageTk.PhotoImage(imagenMusica)
+
+nombre = StringVar()
+entradacontra=StringVar()
+entradarecontra=StringVar()
+check10=IntVar()
+check20=IntVar()
+check30=IntVar()
+
+def iniciar():
+      if check30.get()==1:
+         if entradacontra.get()==entradarecontra.get():
+            print(f'Sesion iniciada')
+
+         else :
+            print(f'Contraseña incorrecta')
+      else:
+        print(f'Para iniciar sesion debe aceptar los terminos')  
+      pass
+
+
+ventanaPrincipal=Frame(root)
+ventanaPrincipal.grid()
+
+titulo1=Label(ventanaPrincipal, text= "LOG IN", font=("Roboto",10)).grid(row=3, column=2)
+
+titulo2=Label(ventanaPrincipal, text= "NOMBRE:\n", font=("Roboto",10)).grid(row=4, column=1)
+textoNombre= Entry(ventanaPrincipal, textvariable=nombre, font=("Roboto",10)).grid(row=4, column=3)
+
+titulo3=Label(ventanaPrincipal, text= "CONTRASEÑA", font=("Roboto",10)).grid(row=5, column=1)
+textoNombre1= Entry(ventanaPrincipal, textvariable=entradacontra, font=("Roboto",10)).grid(row=5, column=3)
+
+titulo4=Label(ventanaPrincipal, text= "CONFIRMAR \nCONTRASEÑA:", font=("Roboto",10)).grid(row=6, column=1)
+textoNombre2= Entry(ventanaPrincipal, textvariable=entradarecontra, font=("Roboto",10)).grid(row=6, column=3)
+
+miTitulo=Label(ventanaPrincipal, image=imag)
+miTitulo.grid(row=1, column=1, columnspan=3, rowspan=2)
+
+
+check= Checkbutton(ventanaPrincipal, text="HOMBRE", variable=check10).grid(row=7,column=1)
+
+checkb= Checkbutton(ventanaPrincipal, text="MUJER", variable=check20).grid(row=7,column=3)
+
+checkc= Checkbutton(ventanaPrincipal, text="ACEPTO TERMINOS", variable=check30).grid(row=8,column=1)
+
+boton =Button(ventanaPrincipal, text = "INICIAR", command=iniciar).grid(row=10, column=2)
+
+root.mainloop()
